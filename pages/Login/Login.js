@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Modal,
+  Alert,
+} from "react-native";
 
 export const LogIn = ({ setLogin }) => {
   const [msgErorr, setMsgErorr] = useState(false);
@@ -16,16 +24,13 @@ export const LogIn = ({ setLogin }) => {
 
   const handleLogin = () => {
     if (username != "admin" && password != "123456") {
-      return setMsgErorr(true);
+      return Alert.alert("invalid username or password");
     }
     setLogin(true);
   };
 
   return (
     <View style={styles.container}>
-      {msgErorr && (
-        <Text style={styles.erorrMsg}>invalid username or password error</Text>
-      )}
       <TextInput
         style={styles.input}
         placeholder="username"
@@ -56,8 +61,5 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     borderRadius: 10,
-  },
-  erorrMsg: {
-    color: "red",
   },
 });
