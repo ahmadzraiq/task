@@ -16,13 +16,7 @@ export const CurrencyList = ({ currencies, selectedCurr, handleClick }) => {
             Object.entries(currencies).map((curr, index) => (
               <TouchableOpacity
                 key={index}
-                style={{
-                  ...styles.currencyListItme,
-                  backgroundColor:
-                    selectedCurr[0] === curr[0]
-                      ? "rgb(113, 172, 112)"
-                      : "white",
-                }}
+                style={styles.currencyListItme(selectedCurr[0], curr[0])}
                 onPress={() => handleClick(curr)}
               >
                 <Text>{curr[0]}</Text>
@@ -40,13 +34,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
   },
-  currencyListItme: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 44,
-    borderColor: "black",
-    borderWidth: 1,
-    borderTopWidth: 0,
+  currencyListItme: (a, b) => {
+    return {
+      justifyContent: "center",
+      alignItems: "center",
+      height: 44,
+      borderColor: "black",
+      borderWidth: 1,
+      borderTopWidth: 0,
+      backgroundColor: a === b ? "rgb(113, 172, 112)" : "white",
+    };
   },
   currencyListContainer: {
     position: "absolute",
